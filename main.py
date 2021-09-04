@@ -14,6 +14,9 @@ def check_website(url):
         yield f"Response from {url}: status_code={status_code}, time={time_taken}s"
 
 
+# TODO
+# Learn more about argparse
+# Try to get cli working by running e.g. python main.py http://www.google.com --check-website
 parser = argparse.ArgumentParser(description="Check if a website is running")
 parser.add_argument("url", metavar="url", type=str, help="url to check")
 # parser.add_argument("h", dest="run_check", help="ping the url and see if it is live", default=check_website)
