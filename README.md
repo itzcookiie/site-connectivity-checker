@@ -4,7 +4,7 @@
 
     Make sure you have Python 3 installed!
 
-Currently:
+#### Currently:
 - Create env by doing `python3 venv env` and activate it
 - Install packages by doing `python3 -m pip install -r requirements.txt`
 - Created a CLI app. Pass your chosen website to `python main.py <url>`
@@ -12,6 +12,6 @@ Currently:
 - Prints out the results in the terminal
 - Prints the average time taken to complete all 4 requests
 
-Ideas:
+#### Ideas:
 - Check a website every e.g. 10 seconds (polling)
 - Add e.g. desktop notification system, so if the website goes down we are alerted
