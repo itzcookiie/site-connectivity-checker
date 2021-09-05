@@ -8,19 +8,27 @@ def get(url):
 
 
 def check_website(url):
-    responses_placeholder = [url] * 10
-    response_list = map(get, responses_placeholder)
-    for status_code, time_taken in list(response_list):
-        yield f"Response from {url}: status_code={status_code}, time={time_taken}s"
+    responses_placeholder = [url] * 5
+    return list(map(get, responses_placeholder))
 
 
-# TODO
-# Learn more about argparse
-# Try to get cli working by running e.g. python main.py http://www.google.com --check-website
-parser = argparse.ArgumentParser(description="Check if a website is running")
-parser.add_argument("url", metavar="url", type=str, help="url to check")
-# parser.add_argument("h", dest="run_check", help="ping the url and see if it is live", default=check_website)
+def print_responses(data):
+    for status_code, time_taken in data:
+        print(f"Response: status_code={status_code}, time={time_taken}s")
+
+
+def get_average_time(data):
+    list_of_time_taken = map(lambda item: item[1], data)
+    return sum(list(list_of_time_taken))
+
+
+parser = argparse.ArgumentParser(description="Ping a website and Check if it is running")
+parser.add_argument("url", metavar="url", type=str, help="url to ping and see if it is live")
 args = parser.parse_args()
 response_messages = check_website(args.url)
-for message in response_messages:
-    print(message)
+print(f"Pinging {args.url}...")
+print("-" * 40)
+print_responses(response_messages)
+print("-" * 40)
+print(f"Statistics:")
+print(f"{' ' * 4} Average = {get_average_time(response_messages)}s")
